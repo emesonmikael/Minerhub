@@ -1,0 +1,6 @@
+{
+  "name": "MinerHub",
+  "description": "Painel de controle web em tempo real para monitoramento e gestão de computadores minerando criptomoedas com XMRig.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
