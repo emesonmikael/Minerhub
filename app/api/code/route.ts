@@ -54,7 +54,7 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const filePath = searchParams.get('file');
 
-  const csharpDir = path.join(process.cwd(), 'csharp-src');
+  const csharpDir = path.join(process.cwd(), 'node-agent');
 
   if (filePath) {
     // Return specific file contents

@@ -16,6 +16,7 @@ export interface Computer {
   os: string;
   ramUsage: number;
   cpuLimit: number;
+  isRealAgent?: boolean;
 }
 
 export interface LogEntry {
@@ -198,7 +199,7 @@ export function simulateActivity() {
   let changed = false;
 
   db.computers = db.computers.map((comp) => {
-    if (comp.status === 'online') {
+    if (comp.status === 'online' && !comp.isRealAgent) {
       // Small random variations to mimic XMRig outputs
       const hashrateVariance = (Math.random() - 0.5) * 100; // +/- 50 H/s
       const cpuVariance = Math.round((Math.random() - 0.5) * 6); // +/- 3%

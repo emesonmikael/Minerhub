@@ -110,14 +110,6 @@ export default function MinerHubWebConsole() {
   const [isCodeLoading, setIsCodeLoading] = useState<boolean>(false);
   const [expandedFolders, setExpandedFolders] = useState<Record<string, boolean>>({
     '': true,
-    'MinerHub.Shared': true,
-    'MinerHub.Shared/Models': true,
-    'MinerHub.Database': true,
-    'MinerHub.Server': true,
-    'MinerHub.Server/Controllers': true,
-    'MinerHub.Agent': true,
-    'MinerHub.Agent/Services': true,
-    'scripts': true,
   });
 
   // New Computer Form State
@@ -651,7 +643,7 @@ export default function MinerHubWebConsole() {
               id="tab_code"
             >
               <FileCode className="w-4 h-4" />
-              <span>Código Fonte C#</span>
+              <span>Código Fonte Node.js</span>
             </button>
           </nav>
 
@@ -1375,14 +1367,14 @@ export default function MinerHubWebConsole() {
               {/* Informative Header outlining solution tree */}
               <div className="bg-[#1B212C] border border-slate-700/50 rounded-2xl p-5 shadow-xl ring-1 ring-white/5 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                  <h3 className="text-base font-black text-orange-500 font-mono tracking-wide uppercase">Navegador do Projeto C# Completo</h3>
-                  <p className="text-xs text-slate-300">Estrutura corporativa limpa pronta para importar no Visual Studio 2022.</p>
+                  <h3 className="text-base font-black text-orange-500 font-mono tracking-wide uppercase">Navegador do Agente Node.js Completo</h3>
+                  <p className="text-xs text-slate-300">Estrutura de código leve, simples e sem dependências para rodar em qualquer máquina.</p>
                 </div>
                 
                 {/* Download Info Guide */}
                 <div className="flex items-center gap-3">
                   <div className="bg-[#151921] border border-slate-700 rounded-xl px-4 py-2 text-[10px] font-mono text-slate-400">
-                    📂 Raiz: <span className="text-orange-500 font-bold">/csharp-src/*</span>
+                    📂 Raiz: <span className="text-orange-500 font-bold">/node-agent/*</span>
                   </div>
                 </div>
               </div>
@@ -1393,7 +1385,7 @@ export default function MinerHubWebConsole() {
                 {/* LEFT COLUMN: SOURCE REPOSITORY TREE (3/12 cols) */}
                 <div className="md:col-span-4 bg-[#1B212C] border border-slate-700/50 rounded-2xl p-4 overflow-y-auto max-h-[650px] shadow-xl ring-1 ring-white/5 space-y-3">
                   <span className="text-[10px] uppercase font-mono font-bold tracking-wider text-slate-400 block border-b border-slate-800 pb-2 mb-2">
-                    Estrutura MinerHub.sln
+                    Estrutura node-agent/
                   </span>
                   
                   <div className="space-y-0.5">
