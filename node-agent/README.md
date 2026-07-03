@@ -46,3 +46,20 @@ Quando o agente rodar, você verá no terminal a mensagem verde:
    * O limite de CPU do slider (`--cpu-max-threads-hint`) é aplicado instantaneamente no hardware!
    * O hashrate real reportado no terminal é capturado via API HTTP local do XMRig (porta 16000) e enviado ao painel em tempo real.
 5. **Parada Imediata:** Ao clicar em **PARAR** no painel, o processo do XMRig é finalizado com segurança.
+
+---
+
+## 🪙 Mineração de USDT, BTC, DOGE ou SHIB via Unmineable
+
+O **MinerHub** e o Agente Node.js possuem suporte inteligente e nativo à **Unmineable**! Você pode usar a força da CPU com o algoritmo RandomX (`rx/0`) e receber pagamentos diretamente em **USDT** (ou na criptomoeda que preferir).
+
+### Como configurar no Painel:
+1. Vá na aba **Parâmetros Global** (ou clique no botão **⚡ Unmineable (USDT / BTC / DOGE)**).
+2. Configure a **Pool de Mineração Padrão** para:
+   `rx.unmineable.com:3333`
+3. No campo **Carteira / Endereço**, digite no formato `MOEDA:SEU_ENDEREÇO`. Exemplo para USDT:
+   `USDT:0x71C...098aBcD`
+4. Clique em **GRAVAR E TRANSMITIR CONFIGS**.
+
+**O que o Agente faz automaticamente por você?**
+Na Unmineable, para identificar qual computador está minerando, é obrigatório passar o nome do Worker junto da carteira (ex: `USDT:0x71C....PC-01`). O nosso Agente Node.js **detecta automaticamente** que você está usando a Unmineable e adiciona de forma invisível o nome único da sua máquina no parâmetro `-u` do XMRig, além de definir a senha `-p x` corretamente. Assim, você vê cada computador separadamente nas estatísticas do site da Unmineable sem precisar configurar máquina por máquina!

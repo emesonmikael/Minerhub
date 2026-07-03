@@ -1194,6 +1194,33 @@ export default function MinerHubWebConsole() {
                     </div>
                   </div>
 
+                  {/* Quick Presets */}
+                  <div className="flex flex-wrap gap-2 mb-4 pb-3 border-b border-slate-800">
+                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider w-full mb-0.5 font-mono">⚡ Predefinições Rápidas (Pressione para auto-preencher):</span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setPoolForm('rx.unmineable.com:3333');
+                        setWalletForm('USDT:0xSeuEnderecoUSDTaqui');
+                        setAlgoForm('rx/0');
+                      }}
+                      className="px-2.5 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+                    >
+                      <span>⚡ Unmineable (USDT / BTC / DOGE)</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setPoolForm('pool.monero.hashvault.pro:80');
+                        setWalletForm('44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjRPJlQBMwbp7GfG');
+                        setAlgoForm('rx/0');
+                      }}
+                      className="px-2.5 py-1.5 bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+                    >
+                      <span>⚡ Monero Padrão (SupportXMR / Hashvault)</span>
+                    </button>
+                  </div>
+
                   <form onSubmit={handleSaveGlobalSettings} className="space-y-4">
                     <div>
                       <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 font-mono">Pool de Mineração Padrão</label>
@@ -1207,7 +1234,7 @@ export default function MinerHubWebConsole() {
                     </div>
 
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 font-mono">Carteira Monero (Wallet Address)</label>
+                      <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 font-mono">Carteira / Endereço (Monero ou Unmineable MOEDA:ENDEREÇO)</label>
                       <input
                         type="text"
                         required
@@ -1255,12 +1282,20 @@ export default function MinerHubWebConsole() {
                   </form>
                 </div>
 
-                {/* Nice informational box outlining C# Database syncing */}
+                {/* Nice informational box outlining Unmineable support */}
+                <div className="bg-emerald-500/10 border border-emerald-500/25 rounded-2xl p-4 flex gap-3 text-xs text-emerald-300">
+                  <Info className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                  <div className="space-y-1 font-mono">
+                    <p className="font-bold text-emerald-200">Suporte Total à Unmineable (USDT, BTC, DOGE...)</p>
+                    <p>O nosso Agente Node.js detecta automaticamente quando você usa a Unmineable ou formato <code>MOEDA:ENDEREÇO</code> (ex: <code>USDT:0x71C...</code>). Ele injeta o nome de cada Worker automaticamente (ex: <code>USDT:0x71C....PC-01</code>) no comando do XMRig para que todos os seus computadores apareçam separadamente nas estatísticas de pagamento da pool!</p>
+                  </div>
+                </div>
+
                 <div className="bg-blue-500/10 border border-blue-500/25 rounded-2xl p-4 flex gap-3 text-xs text-blue-300">
                   <Info className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
                   <div className="space-y-1 font-mono">
-                    <p className="font-bold text-blue-200">Sincronismo Direto com SQLite</p>
-                    <p>Qualquer modificação efetuada nesta página altera diretamente as tabelas do SQLite `Computers` e `Settings` no servidor C# rodando em segundo plano. Os Agents buscam as atualizações instantaneamente via conexões persistentes SignalR.</p>
+                    <p className="font-bold text-blue-200">Sincronismo em Tempo Real</p>
+                    <p>Ao gravar, as novas configurações são enviadas instantaneamente no próximo ping de cada agente (a cada 5 segundos), atualizando o XMRig real sem precisar reiniciar os scripts nas máquinas físicas!</p>
                   </div>
                 </div>
 

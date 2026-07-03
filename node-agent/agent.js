@@ -106,10 +106,30 @@ function startRealXMRig(config) {
   const timeString = new Date().toLocaleTimeString();
   console.log(`[\x1b[32m${timeString}\x1b[0m] \x1b[32mIniciando processo real do XMRig...\x1b[0m`);
   
+  let walletUser = config.wallet || '44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjRPJlQBMwbp7GfG';
+  let password = config.worker || 'worker_node';
+  const workerName = config.worker || 'worker_node';
+
+  // Suporte Inteligente à Unmineable (ex: USDT, BTC, DOGE via RandomX rx/0)
+  // Na Unmineable o formato obrigatório do usuário (-u) é: MOEDA:ENDERECO.NOME_DO_WORKER#REFERRAL
+  if ((config.pool && config.pool.toLowerCase().includes('unmineable')) || walletUser.includes(':')) {
+    if (!walletUser.includes('.')) {
+      if (walletUser.includes('#')) {
+        const parts = walletUser.split('#');
+        walletUser = `${parts[0]}.${workerName}#${parts[1]}`;
+      } else {
+        walletUser = `${walletUser}.${workerName}`;
+      }
+    }
+    // Para Unmineable, a senha padrão em -p costuma ser 'x' ou o nome do worker
+    password = 'x';
+    console.log(`  -> [\x1b[35mModo Unmineable\x1b[0m] Formatado para: \x1b[36m${walletUser}\x1b[0m`);
+  }
+
   const args = [
     '-o', config.pool || 'pool.supportxmr.com:3333',
-    '-u', config.wallet || '44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjRPJlQBMwbp7GfG',
-    '-p', config.worker || 'worker_node',
+    '-u', walletUser,
+    '-p', password,
     '-a', config.algo || 'rx/0',
     `--cpu-max-threads-hint=${config.cpuLimit || 100}`,
     '--http-host=127.0.0.1',
