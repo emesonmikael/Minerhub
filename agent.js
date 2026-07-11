@@ -107,8 +107,9 @@ function startRealXMRig(config) {
   console.log(`[\x1b[32m${timeString}\x1b[0m] \x1b[32mIniciando processo real do XMRig...\x1b[0m`);
   
   let walletUser = config.wallet || '44AFFq5kSiGBoZ4NMDwYtN18obc8AemS33DBLWs3H7otXft3XjRPJlQBMwbp7GfG';
-  let password = config.worker || 'worker_node';
-  const workerName = config.worker || 'worker_node';
+  const localSys = getSystemInfo();
+  const workerName = (config.worker && config.worker !== 'worker_node') ? config.worker : (localSys.hostname || 'worker_node');
+  let password = workerName;
 
   // Suporte Inteligente à Unmineable (ex: USDT, BTC, DOGE via RandomX rx/0)
   // Na Unmineable o formato obrigatório do usuário (-u) é: MOEDA:ENDERECO.NOME_DO_WORKER#REFERRAL
@@ -262,7 +263,7 @@ async function sendTelemetry() {
     ramUsage: sys.ramUsagePercent,
     os: sys.osString,
     xmrigVersion: realXmrigVersion,
-    worker: 'node_worker'
+    worker: sys.hostname || 'node_worker'
   };
 
   try {

@@ -52,6 +52,7 @@ export async function POST(req: NextRequest) {
         os: os || computer.os,
         xmrigVersion: xmrigVersion || computer.xmrigVersion,
         ip: ip || computer.ip,
+        worker: worker || computer.worker,
         miningTime: computer.status === 'online' ? (computer.miningTime + 5) : 0,
       });
     }
@@ -66,6 +67,7 @@ export async function POST(req: NextRequest) {
       pool: settings.defaultPool,
       wallet: settings.defaultWallet,
       algo: settings.algo,
+      worker: currentComp?.worker || currentComp?.name || 'worker_node',
     });
   } catch (error: any) {
     console.error('Error handling agent ping:', error);
